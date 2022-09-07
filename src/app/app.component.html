@@ -1,0 +1,46 @@
+<div class="contaner">
+  <div class="basic-form">
+    <h2>Todo List</h2>
+    <br />
+    <input type="text" placeholder="Enter New Task" #task />
+    <button (click)="addTask(task.value)">Add Task</button>
+  </div>
+  <ul *ngFor="let item of todoList">
+    <li>
+      {{ item.name }} <button (click)="removeTask(item.id)">Remove</button>
+    </li>
+  </ul>
+
+  <app-child [item]="data"></app-child>
+  <button (click)="updateChild()">Update Child COmponent</button>
+
+  <ul *ngFor="let user of UsersDetails">
+    <app-user-details [item]="user"></app-user-details>
+  </ul>
+
+  <app-child (updateDataEvent)="updateData($event)"></app-child>
+
+  <div>
+    <h1>Two way bunding</h1>
+    <input type="text" [(ngModel)]="names" />
+    <p>{{ names }}</p>
+  </div>
+
+  <div>
+    <h1>{{ pipesTitle | uppercase }}</h1>
+    <h1>{{ pipesTitle | lowercase }}</h1>
+    <h1>{{ pipesTitle | slice: 3:6 }}</h1>
+    <h1>{{ pipesTitle }}</h1>
+    <h1>{{ 2000.3000 | number: "2.2-3" }}</h1>
+    <h1>{{ 2.3 | number: "3.3-5" }}</h1>
+    <h1>{{20 | currency: 'USD'}}</h1>
+    <h2>{{ today | date: "fullDate" }}</h2>
+  </div>
+
+  <div>
+    <h1>Cusrom pipes</h1>
+    <h2>{{20 | usdInr: 77}}</h2>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
